@@ -6,6 +6,16 @@ Timer warna-warni untuk pelajar SMA dan mahasiswa yang ingin belajar terjadwal t
 
 👉 **Coba sekarang:** https://fathahnoor.github.io/timer-belajar/
 
+## 📸 Tampilan
+
+![Timer belajar di desktop](screenshots/desktop.png)
+
+<p align="center">
+  <img src="screenshots/mobile.png" alt="Timer belajar di HP" width="330">
+</p>
+
+![Panel pengaturan sesi](screenshots/pengaturan.png)
+
 ## 😵 Masalah yang bikin timer ini ada
 
 Belajar dua jam sekaligus sering berakhir begitu: dua puluh menit serius, seratus menit rebahan sambil buka HP. 📱
@@ -92,6 +102,7 @@ Kalau mau mengubah nilai bawaan secara permanen, buka blok `CONFIG` di dalam fil
 timer-belajar/
 ├── index.html           # pengalih ke timer
 ├── timer-belajar.html   # aplikasi timer
+├── screenshots/         # gambar tampilan untuk README
 └── README.md
 ```
 
