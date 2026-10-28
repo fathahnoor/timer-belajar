@@ -26,17 +26,19 @@ Timer ini membagi waktu menjadi beberapa sesi pendek yang jelas, mulai dari meng
 
 Cincin timer, kartu, dan latar berganti warna setiap kali sesi berganti, jadi belajar terasa seperti memainkan game kecil. 🌈
 
-Saat waktu sesi habis, timer langsung pindah ke sesi berikutnya dan memberi bunyi bel serta getaran di HP. Kamu tidak perlu bolak-balik mengecek layar untuk tahu waktunya sudah habis. 🔔
+Saat waktu sesi habis, bel berbunyi terus sampai kamu menekan **Matikan bel**, lengkap dengan getaran di HP. Timer berhenti di sesi itu dan tidak pindah sendiri. Setelah bel mati, tekan **Sesi berikutnya** kalau sudah siap lanjut. 🔔
 
 Semua pengaturan ada di dalam halaman. Kamu bisa mengganti nama sesi, mengubah durasi, memilih warna, menggeser urutan, menambah sesi baru, atau menghapus sesi yang tidak dipakai tanpa menyentuh kode sama sekali. ⚙️
 
 Pengaturan itu tersimpan otomatis di browser, jadi tetap ada setelah halaman di-refresh atau ditutup. Tampilannya juga menyesuaikan layar HP vertikal, tablet, dan laptop landscape. 💾📱
 
+Tombol **Layar penuh** membuat cincin dan angka waktu memenuhi layar, sementara tombol lain mengecil jadi dua kontrol kecil di bawah. Tekan **Esc** atau **Keluar** untuk kembali. 🖥️
+
 ## 🚀 Cara pakai
 
 1. Buka tautan demo di HP atau laptop, lalu tekan **Mulai**. Timer akan langsung menghitung mundur dari sesi pertama. ▶️
 2. Ikuti jadwalnya, dan pakai tombol **Jeda**, **Ulangi**, atau **Lewati** kalau kamu perlu berhenti sebentar atau berpindah sesi. ⏸️
-3. Setelah semua sesi selesai, timer akan memberi tanda dan kamu bisa memulai jadwal baru dari awal. 🎉
+3. Saat sesi terakhir habis, bel berbunyi sampai dimatikan. Setelah itu kamu bisa memulai jadwal baru dari awal. 🎉
 
 ## 📚 Jadwal bawaan
 
@@ -71,7 +73,8 @@ Jumlah sesi bebas. Mau 3 sesi, 6 sesi, atau 10 sesi, semuanya bisa. Timer akan m
 | `Spasi` | Mulai atau jeda |
 | `R` | Ulangi dari awal |
 | `→` | Lewati ke sesi berikutnya |
-| `Esc` | Tutup panel pengaturan |
+| `F` | Masuk atau keluar layar penuh |
+| `Esc` | Tutup panel pengaturan atau keluar layar penuh |
 
 Shortcut ini aktif di laptop. Kalau kamu membuka timer di HP, cukup sentuh tombolnya. 👆
 

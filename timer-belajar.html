@@ -230,7 +230,8 @@
     header{margin-bottom:14px}
     h1{font-size:clamp(1.32rem,6.6vw,1.7rem);margin-bottom:5px}
     .sub{font-size:.79rem}
-    .settings-btn{margin-top:10px;padding:8px 15px;font-size:.79rem}
+    .header-actions{margin-top:10px;gap:6px}
+    .settings-btn{padding:8px 14px;font-size:.79rem}
     .card{padding:16px 14px;border-radius:22px}
     .ring-wrap{width:min(72vw,288px);margin-bottom:10px}
     .phase{font-size:.66rem;letter-spacing:.16em}
@@ -294,7 +295,9 @@
     header{display:flex;align-items:center;gap:12px;text-align:left;margin-bottom:10px}
     h1{font-size:1.15rem;margin:0}
     .sub{font-size:.73rem}
-    .settings-btn{margin:0 0 0 auto;padding:6px 12px;font-size:.73rem;flex:none}
+    .header-actions{margin:0 0 0 auto;flex:none;flex-wrap:nowrap}
+    .settings-btn{padding:6px 12px;font-size:.73rem}
+    .fs-label{display:none}
     .layout{grid-template-columns:minmax(0,390px) minmax(0,1fr);gap:14px}
     .card{
       display:grid;grid-template-columns:auto minmax(0,1fr);
@@ -322,8 +325,9 @@
   }
 
   /* ---------- tombol pengaturan ---------- */
+  .header-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px}
   .settings-btn{
-    margin-top:14px;display:inline-flex;align-items:center;gap:8px;
+    display:inline-flex;align-items:center;gap:8px;
     padding:9px 18px;border-radius:999px;font-size:.84rem;font-weight:750;
     color:var(--ink);background:rgba(255,255,255,.07);border:1px solid var(--line);
   }
@@ -400,6 +404,81 @@
     .modal{padding:0}
     .modal-panel{max-height:100vh;height:100%;border-radius:0;border:none}
   }
+
+  /* ---------- tautan GitHub ---------- */
+  .site-foot{display:flex;justify-content:center;margin-top:clamp(18px,3vw,30px)}
+  .gh-star{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:9px 16px;border-radius:999px;
+    border:1px solid var(--line);background:rgba(255,255,255,.05);
+    color:var(--muted);text-decoration:none;
+    font-size:.78rem;font-weight:750;letter-spacing:.01em;
+    transition:color .2s,background .2s,border-color .2s,transform .2s;
+  }
+  .gh-star:hover{
+    color:#fff;background:rgba(255,255,255,.12);
+    border-color:rgba(255,255,255,.22);transform:translateY(-1px);
+  }
+  .gh-star svg{width:16px;height:16px;fill:currentColor;flex:none}
+  .gh-star .star{color:#ffd166}
+
+  /* ---------- alarm sesi habis ---------- */
+  body.alarm .ring-fg{animation:alarmRing 1.4s ease-in-out infinite}
+  body.alarm .clock{animation:alarmClock 1.4s ease-in-out infinite}
+  body.alarm .state-line{color:#ffd166;font-weight:750}
+  @keyframes alarmRing{
+    0%,100%{filter:drop-shadow(0 0 9px rgba(255,255,255,.18))}
+    50%{filter:drop-shadow(0 0 26px var(--accent-a))}
+  }
+  @keyframes alarmClock{0%,100%{opacity:1}50%{opacity:.72}}
+
+  /* ---------- mode layar penuh ---------- */
+  .focus-bar{display:none}
+  body.focus-mode{overflow:hidden;padding:0}
+  body.focus-mode .app{
+    max-width:none;width:100%;height:100vh;height:100dvh;
+    display:flex;align-items:center;justify-content:center;padding:0;
+  }
+  body.focus-mode header,
+  body.focus-mode .layout > section[aria-label="Rangkaian sesi"]{display:none}
+  body.focus-mode .layout{display:flex;width:100%;height:100%;align-items:center;justify-content:center}
+  body.focus-mode .card{
+    position:static;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    width:100%;height:100%;padding:0;border:none;border-radius:0;background:none;
+    box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  body.focus-mode .ring-wrap{
+    width:min(94vw,84vh,1100px);
+    width:min(94vw,84dvh,1100px);
+    margin:0;
+  }
+  body.focus-mode .ring-bg,
+  body.focus-mode .ring-fg{stroke-width:9}
+  body.focus-mode .phase{font-size:clamp(.78rem,2.4cqw,1.05rem)}
+  body.focus-mode .phase::after{width:44px;height:4px;margin-top:10px}
+  body.focus-mode .clock{font-size:clamp(2.8rem,23cqw,13rem)}
+  body.focus-mode .state-line{font-size:clamp(.82rem,2.1cqw,1.05rem)}
+  body.focus-mode .cur,
+  body.focus-mode .desc,
+  body.focus-mode .controls,
+  body.focus-mode .stats,
+  body.focus-mode .hint,
+  body.focus-mode .site-foot{display:none}
+  body.focus-mode .focus-bar{
+    position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));
+    transform:translateX(-50%);display:flex;gap:8px;z-index:20;
+  }
+  body.focus-mode .focus-bar button{
+    padding:9px 15px;border-radius:999px;font-size:.78rem;
+    background:rgba(10,7,24,.6);opacity:.72;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    box-shadow:0 8px 24px rgba(0,0,0,.35);
+  }
+  body.focus-mode .focus-bar button:hover,
+  body.focus-mode .focus-bar button:focus-visible{opacity:1;background:rgba(255,255,255,.14)}
+  @media (prefers-reduced-motion:reduce){
+    body.alarm .ring-fg,body.alarm .clock{animation:none}
+  }
 </style>
 </head>
 <body>
@@ -413,7 +492,12 @@
   <header>
     <h1 id="pageTitle">Jadwal Belajar Harian</h1>
     <p class="sub" id="pageSub">Total 120 menit</p>
-    <button class="settings-btn" id="btnSettings" type="button">⚙ Atur sesi &amp; durasi</button>
+    <div class="header-actions">
+      <button class="settings-btn" id="btnSettings" type="button">⚙ Atur sesi &amp; durasi</button>
+      <button class="settings-btn" id="btnFullscreen" type="button" title="Layar penuh (F)">
+        <span aria-hidden="true">⛶</span><span class="fs-label">Layar penuh</span>
+      </button>
+    </div>
   </header>
 
   <div class="layout">
@@ -450,7 +534,7 @@
         <div class="stat"><span>Sesi selesai</span><b id="doneCount">0 / 5</b></div>
       </div>
 
-      <p class="hint">Spasi = mulai / jeda &nbsp;·&nbsp; R = ulangi &nbsp;·&nbsp; → = lewati<br>Timer otomatis lanjut ke sesi berikutnya.</p>
+      <p class="hint">Spasi = mulai / jeda &nbsp;·&nbsp; R = ulangi &nbsp;·&nbsp; → = lewati &nbsp;·&nbsp; F = layar penuh<br>Bel berbunyi sampai dimatikan. Timer tidak lanjut sendiri.</p>
     </section>
 
     <section aria-label="Rangkaian sesi">
@@ -461,7 +545,20 @@
       <div id="list"></div>
     </section>
   </div>
+
+  <footer class="site-foot">
+    <a class="gh-star" href="https://github.com/fathahnoor/timer-belajar" target="_blank" rel="noopener" aria-label="Beri bintang timer belajar di GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.77 1.05.77 2.12 0 1.53-.01 2.77-.01 3.15 0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+      <span>Star di GitHub</span>
+      <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+    </a>
+  </footer>
 </main>
+
+<div class="focus-bar" aria-label="Kontrol layar penuh">
+  <button id="focusMain" type="button">▶ Mulai</button>
+  <button id="focusExit" type="button">✕ Keluar</button>
+</div>
 
 <div class="modal" id="settingsModal" hidden>
   <div class="modal-backdrop" id="settingsBackdrop"></div>
@@ -582,7 +679,10 @@ const els = {
   stopA: $("stopA"),
   stopB: $("stopB"),
   pageTitle: $("pageTitle"),
-  pageSub: $("pageSub")
+  pageSub: $("pageSub"),
+  fsMain: $("focusMain"),
+  fsExit: $("focusExit"),
+  fsBtn: $("btnFullscreen")
 };
 
 const RING_R = 140;
@@ -590,7 +690,7 @@ const CIRC = 2 * Math.PI * RING_R;
 let BASE_TITLE = CONFIG.title;
 const rows = [];
 
-let state = { i: 0, remaining: 0, endAt: 0, running: false, finished: false };
+let state = { i: 0, remaining: 0, endAt: 0, running: false, ended: false, finished: false };
 let timerId = null;
 
 const segMs = (i) => Math.max(0, Math.round(SEGMENTS[i].minutes * 60000));
@@ -631,27 +731,89 @@ function primeAudio() {
     const AC = window.AudioContext || window.webkitAudioContext;
     if (AC) { try { audioCtx = new AC(); } catch (e) { audioCtx = null; } }
   }
-  if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+  if (audioCtx && audioCtx.state === "suspended") {
+    const p = audioCtx.resume();
+    if (p && p.catch) p.catch(() => {});
+  }
 }
-function tone(freq, delay, dur, gain, type) {
-  if (!audioCtx) return;
-  const osc = audioCtx.createOscillator();
-  const amp = audioCtx.createGain();
-  const t0 = audioCtx.currentTime + delay;
-  osc.type = type || "triangle";
-  osc.frequency.value = freq;
-  amp.gain.setValueAtTime(0.0001, t0);
-  amp.gain.exponentialRampToValueAtTime(gain, t0 + 0.02);
-  amp.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-  osc.connect(amp).connect(audioCtx.destination);
-  osc.start(t0);
-  osc.stop(t0 + dur + 0.05);
+
+let alarmPlaying = false;
+let alarmSrc = null;
+let alarmGain = null;
+let alarmBuzz = null;
+
+function makeAlarmBuffer(isFinal) {
+  const sr = audioCtx.sampleRate;
+  const buf = audioCtx.createBuffer(1, Math.round(sr * 1.5), sr);
+  const data = buf.getChannelData(0);
+  const notes = isFinal
+    ? [987.77, 1318.51, 1567.98, 1975.53]
+    : [880, 1174.66, 1396.91];
+  notes.forEach((freq, k) => {
+    const start = Math.round(k * 0.19 * sr);
+    const len = Math.round(0.16 * sr);
+    for (let n = 0; n < len; n++) {
+      const idx = start + n;
+      if (idx >= data.length) break;
+      const t = n / sr;
+      const env = Math.min(1, t / 0.008) * Math.exp(-t * 7.5);
+      const wave = Math.sin(2 * Math.PI * freq * t) + 0.22 * Math.sin(2 * Math.PI * freq * 2.01 * t);
+      data[idx] += wave * env * 0.42;
+    }
+  });
+  return buf;
 }
-function chime(isFinal) {
+
+function startAlarm(isFinal) {
+  stopAlarm();
   primeAudio();
-  const notes = isFinal ? [523.25, 659.25, 783.99, 1046.5] : [659.25, 880, 1046.5];
-  notes.forEach((f, k) => tone(f, k * 0.15, 0.36, 0.13, "triangle"));
-  if (navigator.vibrate) navigator.vibrate(isFinal ? [220, 90, 220, 90, 340] : [170]);
+  alarmPlaying = true;
+  body.classList.add("alarm");
+  if (audioCtx) {
+    try {
+      const src = audioCtx.createBufferSource();
+      const gain = audioCtx.createGain();
+      gain.gain.value = 0.3;
+      src.buffer = makeAlarmBuffer(isFinal);
+      src.loop = true;
+      src.connect(gain).connect(audioCtx.destination);
+      src.start();
+      alarmSrc = src;
+      alarmGain = gain;
+    } catch (e) {
+      alarmSrc = null;
+      alarmGain = null;
+    }
+  }
+  const buzz = () => {
+    if (alarmPlaying && navigator.vibrate) {
+      navigator.vibrate(isFinal ? [320, 120, 320, 120, 480] : [260, 120, 260]);
+    }
+  };
+  buzz();
+  alarmBuzz = setInterval(buzz, 1500);
+  updateUI();
+}
+
+function stopAlarm() {
+  if (!alarmPlaying && !alarmSrc && !alarmBuzz) {
+    body.classList.remove("alarm");
+    return;
+  }
+  alarmPlaying = false;
+  if (alarmBuzz) { clearInterval(alarmBuzz); alarmBuzz = null; }
+  if (alarmSrc) {
+    try { alarmSrc.stop(); } catch (e) {}
+    try { alarmSrc.disconnect(); } catch (e) {}
+    alarmSrc = null;
+  }
+  if (alarmGain) {
+    try { alarmGain.disconnect(); } catch (e) {}
+    alarmGain = null;
+  }
+  body.classList.remove("alarm");
+  if (navigator.vibrate) navigator.vibrate(0);
+  updateUI();
 }
 function flash() {
   body.classList.remove("flash");
@@ -694,13 +856,17 @@ function updateUI() {
   els.cur.textContent = seg.name;
   els.desc.textContent = seg.desc;
 
-  els.state.textContent = state.finished
-    ? "Selesai! 🎉"
-    : state.running
-      ? "Berjalan"
-      : state.remaining < dur
-        ? "Dijeda"
-        : "Siap dimulai";
+  els.state.textContent = alarmPlaying
+    ? (state.finished ? "Selesai • bel berbunyi" : "Waktu habis • bel berbunyi")
+    : state.finished
+      ? "Selesai! 🎉"
+      : state.ended
+        ? "Waktu habis • tekan Sesi berikutnya"
+        : state.running
+          ? "Berjalan"
+          : state.remaining < dur
+            ? "Dijeda"
+            : "Siap dimulai";
 
   // warna aksen mengikuti sesi aktif
   document.documentElement.style.setProperty("--accent-a", seg.colors[0]);
@@ -709,22 +875,22 @@ function updateUI() {
   els.stopB.setAttribute("stop-color", seg.colors[1]);
 
   // cincin
-  const frac = state.finished ? 1 : dur > 0 ? Math.max(0, Math.min(1, state.remaining / dur)) : 0;
+  const frac = state.ended ? 1 : dur > 0 ? Math.max(0, Math.min(1, state.remaining / dur)) : 0;
   els.ring.style.strokeDasharray = CIRC;
   els.ring.style.strokeDashoffset = String(CIRC * (1 - frac));
 
   // total tersisa
-  let left = state.finished ? 0 : state.remaining;
+  let left = state.ended ? 0 : state.remaining;
   for (let j = state.i + 1; j < SEGMENTS.length; j++) left += segMs(j);
   els.totalLeft.textContent = fmt(left);
 
-  const done = state.finished ? SEGMENTS.length : state.i;
+  const done = state.finished ? SEGMENTS.length : state.ended ? state.i + 1 : state.i;
   els.done.textContent = done + " / " + SEGMENTS.length;
 
   // baris daftar
   rows.forEach((row, j) => {
-    const isDone = state.finished || j < state.i;
-    row.el.classList.toggle("active", !state.finished && j === state.i);
+    const isDone = state.finished || j < state.i || (state.ended && j === state.i);
+    row.el.classList.toggle("active", !state.ended && !state.finished && j === state.i);
     row.el.classList.toggle("done", isDone);
     let pct = 0;
     if (isDone) pct = 100;
@@ -735,15 +901,30 @@ function updateUI() {
     row.fill.style.width = pct + "%";
   });
 
-  // tombol mulai
-  if (state.finished) els.start.textContent = "↻ Mulai lagi";
-  else if (state.running) els.start.textContent = "⏸ Jeda";
-  else els.start.textContent = state.remaining < segMs(state.i) ? "▶ Lanjut" : "▶ Mulai";
+  // tombol utama
+  let mainText;
+  if (alarmPlaying) mainText = "🔕 Matikan bel";
+  else if (state.ended && !state.finished) mainText = "▶ Sesi berikutnya";
+  else if (state.finished) mainText = "↻ Mulai lagi";
+  else if (state.running) mainText = "⏸ Jeda";
+  else mainText = state.remaining < dur ? "▶ Lanjut" : "▶ Mulai";
+  els.start.textContent = mainText;
+
+  let focusText;
+  if (alarmPlaying) focusText = "🔕 Matikan";
+  else if (state.ended && !state.finished) focusText = "▶ Sesi berikutnya";
+  else if (state.finished) focusText = "↻ Mulai lagi";
+  else if (state.running) focusText = "⏸ Jeda";
+  else focusText = state.remaining < dur ? "▶ Lanjut" : "▶ Mulai";
+  els.fsMain.textContent = focusText;
+  els.fsMain.setAttribute("aria-label", focusText.replace(/^[^A-Za-z]+/, ""));
 
   // judul tab
   document.title = state.finished
     ? "Selesai • " + CONFIG.title
-    : fmt(state.remaining) + " • " + seg.label;
+    : state.ended
+      ? "⏰ Waktu habis • " + seg.label
+      : fmt(state.remaining) + " • " + seg.label;
 }
 
 /* ---------- mesin timer ---------- */
@@ -758,30 +939,27 @@ function stopTicking() {
 
 function tick() {
   if (!state.running) return;
-  const t = now();
-  let alerted = false;
-
-  while (t >= state.endAt) {
-    if (state.i >= SEGMENTS.length - 1) {
-      finish();
-      return;
-    }
-    state.i += 1;
-    state.endAt += segMs(state.i); // sambung tepat di batas sesi sebelumnya
-    if (!alerted) {
-      chime(false);
-      flash();
-      alerted = true;
-    }
+  const left = state.endAt - now();
+  if (left <= 0) {
+    endSession();
+    return;
   }
-
-  state.remaining = Math.max(0, state.endAt - t);
+  state.remaining = left;
   updateUI();
 }
 
+function endSession() {
+  stopTicking();
+  state.running = false;
+  state.remaining = 0;
+  state.ended = true;
+  if (state.i >= SEGMENTS.length - 1) state.finished = true;
+  flash();
+  startAlarm(state.finished);
+}
+
 function start() {
-  if (state.running) return;
-  if (state.finished) reset();
+  if (state.running || state.ended) return;
   if (state.remaining <= 0) state.remaining = segMs(state.i);
   primeAudio();
   state.running = true;
@@ -800,33 +978,71 @@ function pause() {
 
 function reset() {
   stopTicking();
-  state = { i: 0, remaining: segMs(0), endAt: 0, running: false, finished: false };
+  stopAlarm();
+  state = { i: 0, remaining: segMs(0), endAt: 0, running: false, ended: false, finished: false };
   document.title = BASE_TITLE;
+  updateUI();
+}
+
+function nextSession() {
+  stopTicking();
+  stopAlarm();
+  if (state.i >= SEGMENTS.length - 1) {
+    state.running = false;
+    state.remaining = 0;
+    state.ended = true;
+    state.finished = true;
+    updateUI();
+    return;
+  }
+  state.i += 1;
+  state.remaining = segMs(state.i);
+  state.endAt = 0;
+  state.running = false;
+  state.ended = false;
+  state.finished = false;
   updateUI();
 }
 
 function skip() {
   stopTicking();
-  if (state.finished) return;
+  stopAlarm();
   if (state.i >= SEGMENTS.length - 1) {
-    finish();
+    state.running = false;
+    state.remaining = 0;
+    state.ended = true;
+    state.finished = true;
+    updateUI();
     return;
   }
+  const wasRunning = state.running;
   state.i += 1;
   state.remaining = segMs(state.i);
-  if (state.running) state.endAt = now() + state.remaining;
+  state.ended = false;
+  state.finished = false;
+  state.running = wasRunning;
+  if (wasRunning) {
+    state.endAt = now() + state.remaining;
+    startTicking();
+  }
   updateUI();
-  if (state.running) startTicking();
 }
 
-function finish() {
-  stopTicking();
-  state.running = false;
-  state.finished = true;
-  state.remaining = 0;
-  chime(true);
-  flash();
-  updateUI();
+function primaryAction() {
+  if (alarmPlaying) {
+    stopAlarm();
+    return;
+  }
+  if (state.ended) {
+    if (state.finished) {
+      reset();
+      start();
+    } else {
+      nextSession();
+    }
+    return;
+  }
+  state.running ? pause() : start();
 }
 
 /* ---------- menu pengaturan ---------- */
@@ -954,6 +1170,7 @@ function readEditor() {
 
 function openSettings() {
   if (state.running) pause();
+  if (alarmPlaying) stopAlarm();
   draft = SEGMENTS.map((s) => ({
     label: s.label,
     name: s.name,
@@ -1026,10 +1243,91 @@ $("btnDefaults").addEventListener("click", () => {
   renderEditor();
 });
 
+/* ---------- layar penuh ---------- */
+let fsTimer = null;
+let nativeFullscreen = false;
+function clearFsTimer() {
+  if (fsTimer) { clearTimeout(fsTimer); fsTimer = null; }
+}
+
+function isFullscreen() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement);
+}
+
+function enterFocus() {
+  clearFsTimer();
+  body.classList.add("focus-mode");
+  if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  updateUI();
+}
+
+function exitFocus() {
+  clearFsTimer();
+  nativeFullscreen = false;
+  body.classList.remove("focus-mode");
+  updateUI();
+}
+
+function syncFullscreen() {
+  clearFsTimer();
+  if (isFullscreen()) {
+    nativeFullscreen = true;
+    enterFocus();
+    return;
+  }
+  if (nativeFullscreen) {
+    nativeFullscreen = false;
+    exitFocus();
+  }
+}
+
+function scheduleFocusFallback() {
+  clearFsTimer();
+  fsTimer = setTimeout(() => {
+    fsTimer = null;
+    if (!isFullscreen() && !body.classList.contains("focus-mode")) enterFocus();
+  }, 700);
+}
+
+function toggleFullscreen() {
+  if (isFullscreen()) {
+    try {
+      const p = document.exitFullscreen ? document.exitFullscreen() : document.webkitExitFullscreen();
+      if (p && p.catch) p.catch(() => exitFocus());
+    } catch (e) {
+      exitFocus();
+    }
+    return;
+  }
+  if (body.classList.contains("focus-mode")) {
+    exitFocus();
+    return;
+  }
+  const el = document.documentElement;
+  const request = el.requestFullscreen || el.webkitRequestFullscreen;
+  if (!request) {
+    enterFocus();
+    return;
+  }
+  try {
+    const result = request.call(el);
+    if (result && result.catch) result.catch(() => enterFocus());
+    scheduleFocusFallback();
+  } catch (e) {
+    enterFocus();
+  }
+}
+
+document.addEventListener("fullscreenchange", syncFullscreen);
+document.addEventListener("webkitfullscreenchange", syncFullscreen);
+
 /* ---------- interaksi ---------- */
-els.start.addEventListener("click", () => (state.running ? pause() : start()));
+els.start.addEventListener("click", primaryAction);
 els.reset.addEventListener("click", reset);
 els.skip.addEventListener("click", skip);
+els.fsMain.addEventListener("click", primaryAction);
+els.fsExit.addEventListener("click", toggleFullscreen);
+els.fsBtn.addEventListener("click", toggleFullscreen);
 
 document.addEventListener("keydown", (e) => {
   if (!settingsModal.hidden && e.key === "Escape") {
@@ -1038,10 +1336,21 @@ document.addEventListener("keydown", (e) => {
     return;
   }
   if (body.classList.contains("modal-open")) return;
-  if (e.target.closest("input, textarea, select, button")) return;
+  if (e.key === "Escape" && body.classList.contains("focus-mode") && !isFullscreen()) {
+    e.preventDefault();
+    exitFocus();
+    return;
+  }
+  if (e.target.closest("input, textarea, select")) return;
+  if (e.key === "f" || e.key === "F") {
+    e.preventDefault();
+    toggleFullscreen();
+    return;
+  }
+  if (e.target.closest("button")) return;
   if (e.code === "Space") {
     e.preventDefault();
-    state.running ? pause() : start();
+    primaryAction();
   } else if (e.key === "r" || e.key === "R") {
     reset();
   } else if (e.key === "ArrowRight") {
@@ -1051,9 +1360,11 @@ document.addEventListener("keydown", (e) => {
 
 // saat tab kembali aktif, catch-up otomatis dari waktu nyata
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible" && state.running) {
+  if (document.visibilityState !== "visible") return;
+  if (alarmPlaying) primeAudio();
+  if (state.running) {
     tick();
-    startTicking();
+    if (state.running) startTicking();
   }
 });
 
